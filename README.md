@@ -20,6 +20,15 @@ Five tabs, bottom navigation:
     math is accurate.
 - **Budget** — a slider per category you've created, comparing your planned
   monthly total against the target you set.
+- **Scan** — a camera icon on the Expenses and Income tabs lets you snap a
+  photo of a receipt or pay stub. It's read with on-device OCR (ML Kit's
+  local text recognizer -- the image never leaves the phone or gets
+  uploaded anywhere) to guess a name and amount, then opens the normal
+  add form pre-filled so you can check it before saving. The photo itself
+  is written to a private app cache file only for the moment it's being
+  read, then deleted immediately -- it's never saved to your gallery,
+  never stored in the app's database, and nothing is ever auto-saved
+  without you reviewing it first.
 - **Health** — the reporting dashboard: net worth, monthly cash flow
   (gross income → deductions → net income → expenses), savings rate,
   spending/income breakdowns by category, and budget adherence.

@@ -8,9 +8,11 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.PhotoCamera
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -28,6 +30,7 @@ import com.koreykaigle.budgetapp.ui.common.EmptyState
 import com.koreykaigle.budgetapp.ui.common.LineItemCard
 import com.koreykaigle.budgetapp.ui.common.LineItemDraft
 import com.koreykaigle.budgetapp.ui.common.LineItemEditorSheet
+import com.koreykaigle.budgetapp.ui.common.rememberReceiptScanner
 import com.koreykaigle.budgetapp.ui.common.repositoryViewModel
 import com.koreykaigle.budgetapp.util.formatCurrency
 import kotlinx.coroutines.launch
@@ -46,9 +49,26 @@ fun IncomeScreen() {
 
     val total = rows.sumOf { it.entry.amount }
 
+    val scanPayStub = rememberReceiptScanner { result ->
+        editingEntry = null
+        editingDraft = LineItemDraft(
+            name = result.suggestedName,
+            amount = result.suggestedAmount,
+            notes = if (result.rawText.isNotBlank()) "Scanned text (double-check the amount above):\n${result.rawText.take(400)}" else ""
+        )
+        showEditor = true
+    }
+
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Income · ${formatCurrency(total)}") })
+            TopAppBar(
+                title = { Text("Income · ${formatCurrency(total)}") },
+                actions = {
+                    IconButton(onClick = scanPayStub) {
+                        Icon(Icons.Filled.PhotoCamera, contentDescription = "Scan a pay stub")
+                    }
+                }
+            )
         },
         floatingActionButton = {
             FloatingActionButton(onClick = {

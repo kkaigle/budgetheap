@@ -73,6 +73,10 @@ dependencies {
     implementation("androidx.room:room-ktx:2.6.1")
     ksp("androidx.room:room-compiler:2.6.1")
 
+    // On-device receipt/pay-stub scanning -- text recognition runs entirely on the
+    // device; the photo itself is never uploaded anywhere.
+    implementation("com.google.mlkit:text-recognition:16.0.0")
+
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 

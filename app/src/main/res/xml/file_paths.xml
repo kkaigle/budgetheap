@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Only the app's private cache "scans" subfolder is exposed, and only to the
+         camera app for the duration of a single capture. -->
+    <cache-path name="scans" path="scans/" />
+</paths>
