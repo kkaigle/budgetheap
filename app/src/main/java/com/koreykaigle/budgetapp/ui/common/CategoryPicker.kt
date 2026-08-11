@@ -52,7 +52,7 @@ fun CategoryPicker(
                 .fillMaxWidth()
                 .menuAnchor()
         )
-        androidx.compose.material3.ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+        ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
             DropdownMenuItem(
                 text = { Text("None") },
                 onClick = {
