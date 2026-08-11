@@ -30,7 +30,7 @@
         </activity>
 
         <!-- Serves a content:// Uri for the camera app to write into. Points only at
-             a private cache subfolder -- nothing here is shared or persisted. -->
+             a private cache subfolder; nothing here is shared or persisted. -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
